@@ -1,38 +1,36 @@
-import React, {useState, useEffect} from 'react'
-//import moment from 'moment'
-import { useParams } from 'react-router-dom';
+import React from 'react'
 import {AxiosWithAuth} from '../utils/AxiosWithAuth'
 
+class FriendsPage extends React.Component{
+    constructor(){
+        super();
+        this.state = { friends: []}
+    }
+    componentDidMount() {
+        this.getFriends();
+    }
 
-const FriendsPage = () => {
-
-    const [friend, setFriend] = useState();
-
-    useEffect(() => {
-
-        AxiosWithAuth().get(`/api/friends/`)
-        .then(res => {
-            console.log(res);
-            setFriend(res.data.data)
+    getFriends = () => {
+        AxiosWithAuth().get("/api/friends")
+        .then(response => {
+            console.log(response);
+            this.setState({ friends: response.data})
         })
-        .catch(err => {
-            console.log(`FriendsPage .get error: ${err}`)
-        })
-    })
+        .catch(error => console.log(error))
+    }
 
-
-    return(
-        <div>                
+    render(){
+        return(
             <div>
-                <h2>Name: {friend.name}</h2>
-                <p>Age</p>
-                <p>Email</p> 
+              
+                Friends:
+        {this.state.friends.map(friend => <div>{`${friend.name}, is ${friend.age} years old`}</div>)}
+    
             </div>
-           
-        </div>
-    )
-
+        )
+    }
 }
+
 
 
 export default FriendsPage;
