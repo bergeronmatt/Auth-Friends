@@ -24,7 +24,7 @@ class FriendsPage extends React.Component{
             <div>
               
                 Friends:
-        {this.state.friends.map(friend => <div>{`${friend.name}, is ${friend.age} years old`}</div>)}
+                {this.state.friends.map(friend => <div>{`${friend.name}, is ${friend.age} years old`}</div>)}
     
             </div>
         )

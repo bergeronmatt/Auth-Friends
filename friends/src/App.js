@@ -5,6 +5,7 @@ import './App.css';
 import Login from './components/Login'
 import PrivateRoute from './components/PrivateRoute'
 import FriendsPage from './components/FriendsPage'
+import AddFriend from './components/AddFriend'
 
 function App() {
   return (
@@ -18,11 +19,14 @@ function App() {
           <li>
             <Link to='/protected'>Protected Page</Link>
           </li>
+          <li>
+            <Link to='/add-friend'>Add Friend</Link>
+          </li>
         </ul>
         <Switch>
           <PrivateRoute exact path="/protected" component={FriendsPage} />
+          <PrivateRoute path='add-friend' component={AddFriend}/>
           <Route path="/login" component={Login} />
-          <Route component={Login} />
         </Switch>
       </div>
     </Router>
